@@ -28,8 +28,8 @@ const Contact = model("contact", contactSchema);
 
 const addSchema = Joi.object({
   name: Joi.string().required(),
-  email: Joi.string(),
-  phone: Joi.string(),
+  email: Joi.string().regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/).required(),
+  phone: Joi.string().regex(/^[0-9]{10}$/).messages({'string.pattern.base': `Phone number must have 10 digits.`}).required(),
   favorite: Joi.boolean(),
 });
 
